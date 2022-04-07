@@ -39,7 +39,7 @@ class SecantMethod(QWidget):
         self.result_table.resizeColumnsToContents()
 
     def initUI(self):
-        self.setWindowTitle("Secant Method")
+        self.setWindowTitle("Open Method / Secant")
         self.resize(1250, 650)
         grid_layout = QtWidgets.QGridLayout()
         # Labels

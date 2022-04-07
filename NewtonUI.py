@@ -37,7 +37,7 @@ class NewtonRaphson(QWidget):
         self.result_table.resizeColumnsToContents()
 
     def initUI(self):
-        self.setWindowTitle("Open Method")
+        self.setWindowTitle("Open Method / Newton-Raphson")
         self.resize(1250, 650)
         grid_layout = QtWidgets.QGridLayout()
         # Labels
