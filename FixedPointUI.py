@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtWidgets import QPushButton
 
 import OpenMethod
-from globals import PandasModel
+from globals import PandasModel, plot
 
 
 class FixedPointUI(QWidget):
@@ -27,6 +27,7 @@ class FixedPointUI(QWidget):
 
         if not (fun and x0 and g_x and epsilon and iteration):
             return
+        plot(fun)
         print(fun)
         print(x0)
 
@@ -61,11 +62,11 @@ class FixedPointUI(QWidget):
         grid_layout.addWidget(x0_label, 3, 0)
         grid_layout.addWidget(self.x0_text, 3, 1)
 
-        grid_layout.addWidget(epsilon_label, 4, 0)
-        grid_layout.addWidget(self.epsilon_text, 4, 1)
+        grid_layout.addWidget(iteration_label, 4, 0)
+        grid_layout.addWidget(self.iteration_text, 4, 1)
 
-        grid_layout.addWidget(iteration_label, 5, 0)
-        grid_layout.addWidget(self.iteration_text, 5, 1)
+        grid_layout.addWidget(epsilon_label, 5, 0)
+        grid_layout.addWidget(self.epsilon_text, 5, 1)
 
         grid_layout.addWidget(self.result_table, 1, 2, 5, 3)
 

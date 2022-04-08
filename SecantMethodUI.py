@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtWidgets import QPushButton
 
 import OpenMethod
-from globals import PandasModel
+from globals import PandasModel, plot
 
 
 class SecantMethodUI(QWidget):
@@ -27,6 +27,7 @@ class SecantMethodUI(QWidget):
 
         if not (fun and x0 and epsilon and iteration):
             return
+        plot(fun)
         print(fun)
         print(x0)
 

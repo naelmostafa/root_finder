@@ -5,6 +5,7 @@ from PyQt5.QtCore import QAbstractTableModel, Qt
 
 
 def plot(equation):
+    plt.figure()
     equation = sympy.sympify(equation)
     # setting the x - coordinates
     x = np.arange(-10, 10, 0.1)

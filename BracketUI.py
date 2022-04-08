@@ -3,7 +3,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtWidgets import QPushButton
 import BracketMethod
-from globals import PandasModel
+from globals import PandasModel, plot
 
 
 class BracketUI(QWidget):
@@ -28,6 +28,7 @@ class BracketUI(QWidget):
 
         if not (fun and xl and xu and epsilon and iteration):
             return
+        plot(fun)
         print(fun)
         print(xl)
         print(xu)

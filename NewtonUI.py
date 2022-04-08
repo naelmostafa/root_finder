@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtWidgets import QPushButton
 
 import OpenMethod
-from globals import PandasModel
+from globals import PandasModel, plot
 
 
 class NewtonUI(QWidget):
@@ -27,6 +27,7 @@ class NewtonUI(QWidget):
             return
         print(fun)
         print(x0)
+        plot(fun)
 
         newton = OpenMethod.OpenMethod(fun, float(epsilon), int(iteration))
         data, _ = newton.find_root_newton(float(x0))
