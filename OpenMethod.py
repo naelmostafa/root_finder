@@ -43,7 +43,8 @@ class OpenMethod(object):
                 break
         end_time = time.time()
         data = pd.DataFrame(
-            {'X[i-1]': x_0,
+            {' Index ': range(len(x_0)),
+             'X[i-1]': x_0,
              'X[i]': x_1,
              'F(X[i-1])': f_x0,
              'F(X[i])': f_x1,
@@ -72,7 +73,8 @@ class OpenMethod(object):
                 break
         end_time = time.time()
         data = pd.DataFrame(
-            {'X[i]': x_0,
+            {' Index ': range(len(x_0)),
+             'X[i]': x_0,
              'X[i+1]': x_1,
              'F(X[i])': f_x,
              'F`(X[i])': f_diff,
@@ -98,7 +100,8 @@ class OpenMethod(object):
             initial = x_r[i]
 
         end_time = time.time()
-        data = pd.DataFrame({'X[i]': x_0,
+        data = pd.DataFrame({' Index ': range(len(x_0)),
+                             'X[i]': x_0,
                              'X[i+1]': x_r,
                              'Relative Error': error,
                              })
