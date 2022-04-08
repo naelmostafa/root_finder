@@ -14,6 +14,9 @@ class NewtonUI(QWidget):
         self.x0_text = QtWidgets.QLineEdit()
         self.iteration_text = QtWidgets.QLineEdit("50")
         self.epsilon_text = QtWidgets.QLineEdit("0.00001")
+        self.x_r = QtWidgets.QLabel("Approximate Root\n: ")
+        self.error_label = QtWidgets.QLabel("Relative Error\n: ")
+        self.time_label = QtWidgets.QLabel("Elapsed Time\n: ")
         self.result_table = QtWidgets.QTableView()
         self.initUI()
 
@@ -30,16 +33,19 @@ class NewtonUI(QWidget):
         plot(fun)
 
         newton = OpenMethod.OpenMethod(fun, float(epsilon), int(iteration))
-        data, _ = newton.find_root_newton(float(x0))
+        data, time = newton.find_root_newton(float(x0))
         model = PandasModel(data)
 
         self.result_table.setModel(model)
         self.result_table.resizeRowsToContents()
         self.result_table.resizeColumnsToContents()
+        self.x_r.setText(f"Approximate Root\n: {float(data['X[i+1]'].iloc[-1])}")
+        self.error_label.setText(f"Relative Error\n: {float(data['Relative Error'].iloc[-1])}")
+        self.time_label.setText(f"Elapsed Time\n: {time}")
 
     def initUI(self):
         self.setWindowTitle("Open Method / Newton-Raphson")
-        self.resize(1250, 650)
+        self.resize(1250, 750)
         grid_layout = QtWidgets.QGridLayout()
         # Labels
         eqn_label = QtWidgets.QLabel("Function F(x)= ")
@@ -62,9 +68,13 @@ class NewtonUI(QWidget):
         grid_layout.addWidget(epsilon_label, 4, 0)
         grid_layout.addWidget(self.epsilon_text, 4, 1)
 
-        grid_layout.addWidget(self.result_table, 1, 2, 4, 3)
-
         grid_layout.addWidget(calc_btn, 5, 0, 1, 2)
+
+        grid_layout.addWidget(self.x_r, 1, 5)
+        grid_layout.addWidget(self.error_label, 2, 5)
+        grid_layout.addWidget(self.time_label, 3, 5)
+
+        grid_layout.addWidget(self.result_table, 1, 2, 4, 3)
 
         grid_layout.setColumnStretch(1, 1)
         grid_layout.setColumnStretch(2, 2)

@@ -16,6 +16,9 @@ class BracketUI(QWidget):
         self.xu_text = QtWidgets.QLineEdit()
         self.iteration_text = QtWidgets.QLineEdit("50")
         self.epsilon_text = QtWidgets.QLineEdit("0.00001")
+        self.x_r = QtWidgets.QLabel("Approximate Root\n: ")
+        self.error_label = QtWidgets.QLabel("Relative Error\n: ")
+        self.time_label = QtWidgets.QLabel("Elapsed Time\n: ")
         self.result_table = QtWidgets.QTableView()
         self.initUI()
 
@@ -34,11 +37,14 @@ class BracketUI(QWidget):
         print(xu)
 
         bisection = BracketMethod.BracketMethod(fun, float(xl), float(xu), float(epsilon), int(iteration))
-        data, _ = bisection.find_root(self.flag)
+        data, time = bisection.find_root(self.flag)
         model = PandasModel(data)
         self.result_table.setModel(model)
         self.result_table.resizeRowsToContents()
         self.result_table.resizeColumnsToContents()
+        self.x_r.setText(f"Approximate Root\n: {float(data['X_Root'].iloc[-1])}")
+        self.error_label.setText(f"Relative Error\n: {float(data['Relative Error'].iloc[-1])}")
+        self.time_label.setText(f"Elapsed Time\n: {time}")
 
     def selection_change(self, i):
         self.flag = True if i else False
@@ -46,7 +52,7 @@ class BracketUI(QWidget):
 
     def initUI(self):
         self.setWindowTitle("BracketUI Method")
-        self.resize(1250, 650)
+        self.resize(1250, 750)
         grid_layout = QtWidgets.QGridLayout()
         # Labels
         method_label = QtWidgets.QLabel("Method")
@@ -81,6 +87,10 @@ class BracketUI(QWidget):
         grid_layout.addWidget(self.epsilon_text, 5, 1)
 
         grid_layout.addWidget(calc_btn, 6, 0, 1, 2)
+
+        grid_layout.addWidget(self.x_r, 0, 5)
+        grid_layout.addWidget(self.error_label, 1, 5)
+        grid_layout.addWidget(self.time_label, 2, 5)
 
         grid_layout.addWidget(self.result_table, 0, 2, 6, 3)
         grid_layout.setColumnStretch(1, 1)
