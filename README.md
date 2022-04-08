@@ -4,7 +4,7 @@
 
 ## What is Root Finder?
 
-1. **Root Finder** is a tool for finding roots of functions using numerical analysis algorithms with simple GUI.
+1. **Root Finder** is a tool for finding roots of functions and ploting using numerical analysis algorithms with simple GUI.
 2. Written in Python 3.
 3. Uses Pyqt5 for GUI interfaces.
 
