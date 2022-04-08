@@ -7,7 +7,7 @@ import OpenMethod
 from globals import PandasModel
 
 
-class NewtonRaphson(QWidget):
+class NewtonUI(QWidget):
     def __init__(self):
         super().__init__()
         self.eqn_text = QtWidgets.QLineEdit()
@@ -70,7 +70,7 @@ class NewtonRaphson(QWidget):
 
         self.setLayout(grid_layout)
         self.center()
-        self.show()
+        # self.show()
 
     def center(self):
         qr = self.frameGeometry()
@@ -81,5 +81,5 @@ class NewtonRaphson(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = NewtonRaphson()
+    ex = NewtonUI()
     sys.exit(app.exec_())

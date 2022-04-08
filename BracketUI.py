@@ -90,7 +90,7 @@ class BracketUI(QWidget):
 
         self.setLayout(grid_layout)
         self.center()
-        self.show()
+        # self.show()
 
     def center(self):
         qr = self.frameGeometry()

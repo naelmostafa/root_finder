@@ -7,7 +7,7 @@ import OpenMethod
 from globals import PandasModel
 
 
-class FixedPoint(QWidget):
+class FixedPointUI(QWidget):
     def __init__(self):
         super().__init__()
         self.eqn_text = QtWidgets.QLineEdit()
@@ -76,7 +76,7 @@ class FixedPoint(QWidget):
 
         self.setLayout(grid_layout)
         self.center()
-        self.show()
+        # self.show()
 
     def center(self):
         qr = self.frameGeometry()
@@ -87,5 +87,5 @@ class FixedPoint(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = FixedPoint()
+    ex = FixedPointUI()
     sys.exit(app.exec_())

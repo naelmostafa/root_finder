@@ -7,7 +7,7 @@ import OpenMethod
 from globals import PandasModel
 
 
-class SecantMethod(QWidget):
+class SecantMethodUI(QWidget):
     def __init__(self):
         super().__init__()
         self.eqn_text = QtWidgets.QLineEdit()
@@ -76,7 +76,7 @@ class SecantMethod(QWidget):
 
         self.setLayout(grid_layout)
         self.center()
-        self.show()
+        # self.show()
 
     def center(self):
         qr = self.frameGeometry()
@@ -87,5 +87,5 @@ class SecantMethod(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = SecantMethod()
+    ex = SecantMethodUI()
     sys.exit(app.exec_())
