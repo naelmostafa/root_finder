@@ -28,18 +28,18 @@
         * `data` is a pandas dataframe with columns `iteration`, `x`,`X_root`,`F(X_root)` , `error`
 2. Open Method - Newton-Raphson
     - 3 steps:
-        * Initialize `open = Open(equation, epsilon, max-itterations)`
+        * Initialize `open = OpenMethod(equation, epsilon, max-itterations)`
         * Find the root `data, time = open.find_root_newton(initial guess)`
         * `data` is a pandas dataframe with columns `iteration`, `X[i]`,`X[i+1]`,`F(X[i])` ,`F'(X[i])`, `error`
 3. Open Method - Secant
     - 3 steps:
-        * Initialize `open = Open(equation, epsilon, max-itterations)`
+        * Initialize `open = OpenMethod(equation, epsilon, max-itterations)`
         * Find the root `data, time = open.find_root_secant(initial guess, secand guess)`
         * `data` is a pandas dataframe with columns `iteration`, `X[i-1]`,`X[i]`,`F(X[i-1])` ,`F(X[i])`,`F(X[i+])`
           ,`error`
 4. Open Method - Fixed-Point
     - 3 steps:
-        * Initialize `open = Open(equation, epsilon, max-itterations)`
+        * Initialize `open = OpenMethod(equation, epsilon, max-itterations)`
         * Find the root `data, time = open.find_root_fixed_point(initial guess, g_x)` where `g_x` is an equation that
           returns the next guess.
         * `data` is a pandas dataframe with columns `iteration`, `X[i]`,`X[i+1]`, `error`
