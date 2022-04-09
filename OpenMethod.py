@@ -51,7 +51,7 @@ class OpenMethod(object):
              'X[i+1]': x_r,
              'Relative Error': error,
              })
-        return data, (start_time - end_time)
+        return data, (end_time - start_time)
 
     def find_root_newton(self, initial):
         x_0 = []
