@@ -46,6 +46,13 @@ class BracketUI(QWidget):
         self.error_label.setText(f"Relative Error\n: {float(data['Relative Error'].iloc[-1])}")
         self.time_label.setText(f"Elapsed Time\n: {time}")
 
+    def import_file(self):
+        file_name, _ = QFileDialog.getOpenFileName(self, "Open File", "", "Text Files (*.txt)")
+        if file_name:
+            with open(file_name, "r") as f:
+                data = f.read()
+                self.eqn_text.setText(data)
+
     def selection_change(self, i):
         self.flag = True if i else False
         print("Current index", i, "selection changed ", self.flag)
@@ -68,31 +75,37 @@ class BracketUI(QWidget):
         calc_btn = QPushButton("Calculate")
         calc_btn.clicked.connect(self.calc)
 
-        grid_layout.addWidget(method_label, 0, 0)
-        grid_layout.addWidget(self.cb, 0, 1)
+        import_btn = QPushButton("Import function")
+        import_btn.clicked.connect(self.import_file)
 
-        grid_layout.addWidget(eqn_label, 1, 0)
-        grid_layout.addWidget(self.eqn_text, 1, 1)
+        # Add to grid
+        grid_layout.addWidget(import_btn, 0, 0)
 
-        grid_layout.addWidget(xl_label, 2, 0)
-        grid_layout.addWidget(self.xl_text, 2, 1)
+        grid_layout.addWidget(method_label, 1, 0)
+        grid_layout.addWidget(self.cb, 1, 1)
 
-        grid_layout.addWidget(xu_label, 3, 0)
-        grid_layout.addWidget(self.xu_text, 3, 1)
+        grid_layout.addWidget(eqn_label, 2, 0)
+        grid_layout.addWidget(self.eqn_text, 2, 1)
 
-        grid_layout.addWidget(iteration_label, 4, 0)
-        grid_layout.addWidget(self.iteration_text, 4, 1)
+        grid_layout.addWidget(xl_label, 3, 0)
+        grid_layout.addWidget(self.xl_text, 3, 1)
 
-        grid_layout.addWidget(epsilon_label, 5, 0)
-        grid_layout.addWidget(self.epsilon_text, 5, 1)
+        grid_layout.addWidget(xu_label, 4, 0)
+        grid_layout.addWidget(self.xu_text, 4, 1)
 
-        grid_layout.addWidget(calc_btn, 6, 0, 1, 2)
+        grid_layout.addWidget(iteration_label, 5, 0)
+        grid_layout.addWidget(self.iteration_text, 5, 1)
 
-        grid_layout.addWidget(self.x_r, 0, 5)
-        grid_layout.addWidget(self.error_label, 1, 5)
-        grid_layout.addWidget(self.time_label, 2, 5)
+        grid_layout.addWidget(epsilon_label, 6, 0)
+        grid_layout.addWidget(self.epsilon_text, 6, 1)
 
-        grid_layout.addWidget(self.result_table, 0, 2, 6, 3)
+        grid_layout.addWidget(calc_btn, 7, 0, 1, 2)
+
+        grid_layout.addWidget(self.x_r, 1, 5)
+        grid_layout.addWidget(self.error_label, 2, 5)
+        grid_layout.addWidget(self.time_label, 3, 5)
+
+        grid_layout.addWidget(self.result_table, 1, 2, 7, 3)
         grid_layout.setColumnStretch(1, 1)
         grid_layout.setColumnStretch(2, 2)
 

@@ -43,6 +43,13 @@ class NewtonUI(QWidget):
         self.error_label.setText(f"Relative Error\n: {float(data['Relative Error'].iloc[-1])}")
         self.time_label.setText(f"Elapsed Time\n: {time}")
 
+    def import_file(self):
+        file_name, _ = QFileDialog.getOpenFileName(self, "Open File", "", "Text Files (*.txt)")
+        if file_name:
+            with open(file_name, "r") as f:
+                data = f.read()
+                self.eqn_text.setText(data)
+
     def initUI(self):
         self.setWindowTitle("Open Method / Newton-Raphson")
         self.resize(1250, 750)
@@ -55,6 +62,12 @@ class NewtonUI(QWidget):
 
         calc_btn = QPushButton("Calculate")
         calc_btn.clicked.connect(self.calc_newton)
+
+        import_btn = QPushButton("Import Function")
+        import_btn.clicked.connect(self.import_file)
+
+        # Add to grid
+        grid_layout.addWidget(import_btn, 0, 0)
 
         grid_layout.addWidget(eqn_label, 1, 0)
         grid_layout.addWidget(self.eqn_text, 1, 1)
